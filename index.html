@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>AM STUDIO | Glam Order Form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- canvas-confetti for party popper animation -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at 10% 20%, #0c0c0c, #000000);
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+      color: #ffffff;
+      position: relative;
+    }
+
+    /* decorative background sparkle overlay */
+    body::before {
+      content: "✨";
+      font-size: 400px;
+      position: fixed;
+      bottom: -100px;
+      right: -100px;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+      font-family: monospace;
+      transform: rotate(15deg);
+    }
+
+    body::after {
+      content: "✦";
+      font-size: 280px;
+      position: fixed;
+      top: -80px;
+      left: -80px;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .form-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(18, 18, 24, 0.96);
+      backdrop-filter: blur(2px);
+      border-radius: 3rem;
+      box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 215, 0, 0.25);
+      overflow: hidden;
+      transition: all 0.2s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* YELLOW BANNER - super visible, rich decoration */
+    .studio-header {
+      background: linear-gradient(125deg, #FFD966 0%, #FFC107 30%, #FFB347 70%, #FFD966 100%);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 4px solid #00000033;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 1px 4px rgba(255,255,200,0.8), 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* glitter shine effect */
+    .studio-header::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,210,0.3) 0%, rgba(255,215,0,0) 70%);
+      animation: slowGlide 12s infinite linear;
+      pointer-events: none;
+    }
+
+    @keyframes slowGlide {
+      0% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.4; }
+      50% { transform: translate(5%, 5%) rotate(3deg); opacity: 0.7; }
+      100% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.4; }
+    }
+
+    .studio-name {
+      font-size: 4.2rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #1e2a1f;
+      text-shadow: 4px 4px 12px rgba(0,0,0,0.2), 0 1px 0 #fff9c4;
+      margin-bottom: 0.25rem;
+      position: relative;
+      display: inline-block;
+      background: #0000001a;
+      padding: 0 1rem;
+      border-radius: 80px;
+      backdrop-filter: blur(2px);
+    }
+
+    .slogan {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2c2412;
+      letter-spacing: 1px;
+      margin-top: 0.5rem;
+      text-shadow: 0 1px 1px rgba(255,255,180,0.5);
+      background: rgba(0,0,0,0.15);
+      display: inline-block;
+      padding: 0.3rem 1.8rem;
+      border-radius: 60px;
+      backdrop-filter: blur(2px);
+    }
+
+    .delivery-note {
+      margin-top: 1rem;
+      background: #000000aa;
+      backdrop-filter: blur(8px);
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #FFEA9E;
+      border: 1px solid #FFD966;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    /* form body */
+    .form-body {
+      padding: 2.5rem 2rem 2rem 2rem;
+    }
+
+    /* HORIZONTAL FORM: 2 columns grid (nice wide layout) */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.8rem 2rem;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* email field spans full width on desktop and looks neat */
+    .input-group:last-child {
+      grid-column: span 2;
+    }
+
+    label {
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #FFD966;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    input, select, textarea {
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      font-size: 0.95rem;
+      border: 1.5px solid #2c2c38;
+      border-radius: 28px;
+      background: #0f0f12;
+      transition: all 0.25s;
+      outline: none;
+      color: #f5f5f5;
+      font-weight: 500;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #FFD966;
+      box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+      background: #18181f;
+    }
+
+    .required-star {
+      color: #FF8A5C;
+      font-size: 1rem;
+      margin-left: 4px;
+    }
+
+    button {
+      background: linear-gradient(105deg, #FFD966 0%, #FFC107 40%, #FFB347 100%);
+      border: none;
+      padding: 1rem 1.8rem;
+      font-size: 1.2rem;
+      font-weight: 800;
+      border-radius: 60px;
+      color: #1e2a1a;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.25s;
+      width: 100%;
+      margin-top: 2rem;
+      letter-spacing: 1px;
+      box-shadow: 0 10px 25px -5px rgba(255, 200, 0, 0.5);
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::after {
+      content: "🎉";
+      position: absolute;
+      right: 20px;
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+
+    button:hover::after {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 35px -8px rgba(255, 200, 0, 0.6);
+      filter: brightness(1.02);
+    }
+
+    button:active {
+      transform: translateY(2px);
+    }
+
+    button:disabled {
+      opacity: 0.7;
+      transform: none;
+      filter: grayscale(0.1);
+    }
+
+    .message-area {
+      margin-top: 1.8rem;
+      padding: 1rem 1.2rem;
+      border-radius: 40px;
+      text-align: center;
+      font-weight: 600;
+      transition: 0.2s;
+      background: #12121a;
+      color: #FFD966;
+      font-size: 0.9rem;
+      border: 1px solid #2a2a34;
+    }
+
+    .success-message {
+      background: rgba(46, 204, 113, 0.12);
+      color: #baf56e;
+      border-left: 5px solid #f9ca24;
+      border: 1px solid rgba(255, 200, 100, 0.4);
+    }
+
+    .error-message {
+      background: rgba(231, 76, 60, 0.1);
+      color: #ffaa66;
+      border-left: 5px solid #e67e22;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 1.2rem;
+      background: #050508cc;
+      border-top: 1px solid #FFD96633;
+      color: #aaa;
+      backdrop-filter: blur(4px);
+    }
+
+    footer strong {
+      color: #FFD966;
+      font-weight: 700;
+    }
+
+    /* extra decoration: corner flourish */
+    .form-container::after {
+      content: "✨";
+      position: absolute;
+      bottom: 20px;
+      right: 25px;
+      font-size: 28px;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 1rem;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .input-group:last-child {
+        grid-column: span 1;
+      }
+      .studio-name {
+        font-size: 2.7rem;
+      }
+      .slogan {
+        font-size: 1rem;
+      }
+      .form-body {
+        padding: 1.5rem;
+      }
+      button::after {
+        display: none;
+      }
+    }
+
+    /* sparkle animation for party popper text (optional) */
+    @keyframes wiggle {
+      0%,100% { transform: rotate(0deg); }
+      25% { transform: rotate(5deg); }
+      75% { transform: rotate(-5deg); }
+    }
+    .popper-effect {
+      animation: wiggle 0.2s ease-in-out 3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <div class="studio-header">
+    <div class="studio-name">✦ AM STUDIO ✦</div>
+    <div class="slogan">WHERE QUALITY MEETS YOUR LIFESTYLE</div>
+    <div class="delivery-note">📦 Fast Delivery • 10 to 15 days worldwide</div>
+  </div>
+
+  <div class="form-body">
+    <form id="orderForm" method="POST">
+      <div class="form-grid">
+        <div class="input-group">
+          <label>👤 Full Name <span class="required-star">*</span></label>
+          <input type="text" name="name" placeholder="e.g., Alex Rivera" required>
+        </div>
+        <div class="input-group">
+          <label>🏷️ Product Name <span class="required-star">*</span></label>
+          <input type="text" name="product_name" placeholder="Item / Model / SKU" required>
+        </div>
+        <div class="input-group">
+          <label>🌍 Country <span class="required-star">*</span></label>
+          <input type="text" name="country" placeholder="Country" required>
+        </div>
+        <div class="input-group">
+          <label>🗺️ State / Province <span class="required-star">*</span></label>
+          <input type="text" name="state" placeholder="State / Region" required>
+        </div>
+        <div class="input-group">
+          <label>🏙️ City <span class="required-star">*</span></label>
+          <input type="text" name="city" placeholder="City" required>
+        </div>
+        <div class="input-group">
+          <label>🏠 Address (House/Building) <span class="required-star">*</span></label>
+          <input type="text" name="address" placeholder="Building name, flat no." required>
+        </div>
+        <div class="input-group">
+          <label>🛣️ Street Name / No. <span class="required-star">*</span></label>
+          <input type="text" name="street" placeholder="Street / Avenue" required>
+        </div>
+        <div class="input-group">
+          <label>📮 Postal Code <span class="required-star">*</span></label>
+          <input type="text" name="postal_code" placeholder="Postal / Zip code" required>
+        </div>
+        <div class="input-group">
+          <label>📧 Email (order updates)</label>
+          <input type="email" name="customer_email" placeholder="your@email.com">
+          <small style="font-size: 0.7rem; color: #FFD966AA;">Optional but recommended for tracking</small>
+        </div>
+      </div>
+      
+      <button type="submit" id="submitBtn">🎁 PLACE ORDER NOW 🎁</button>
+      <div id="formStatus" class="message-area">
+        💛 Fill in your details — full order summary will be sent to shop owner instantly.
+      </div>
+    </form>
+  </div>
+  <footer>
+    ⚡ <strong>How it works:</strong> After you order, a complete email with all details goes directly to <strong>madeel.162008@gmail.com</strong> — secure & private.
+  </footer>
+</div>
+
+<script>
+  const OWNER_EMAIL = "madeel.162008@gmail.com";
+  const form = document.getElementById('orderForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusDiv = document.getElementById('formStatus');
+
+  // 🎉 PARTY POPPER ANIMATION - blow out effect on successful order
+  function triggerPartyPopper() {
+    // multi-burst confetti to simulate real party poppers
+    // first burst from the center
+    canvasConfetti({
+      particleCount: 140,
+      spread: 75,
+      origin: { y: 0.6, x: 0.5 },
+      startVelocity: 18,
+      colors: ['#FFD966', '#FFC107', '#FFB347', '#F9E45B', '#FF8C42', '#FFFFFF', '#FF6B6B'],
+      decay: 0.9,
+      ticks: 180
+    });
+    
+    // second blast from left side
+    setTimeout(() => {
+      canvasConfetti({
+        particleCount: 80,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0.1, y: 0.7 },
+        startVelocity: 22,
+        colors: ['#FFD966', '#FFAE42', '#FFE484', '#f39c12', '#e67e22']
+      });
+    }, 130);
+    
+    // third blast from right side
+    setTimeout(() => {
+      canvasConfetti({
+        particleCount: 80,
+        angle: 120,
+        spread: 55,
+        origin: { x: 0.9, y: 0.7 },
+        startVelocity: 22,
+        colors: ['#FFD966', '#F4D03F', '#FFB347', '#f1c40f', '#e67e22']
+      });
+    }, 260);
+    
+    // additional high energy pop (like party popper finale)
+    setTimeout(() => {
+      canvasConfetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.5, x: 0.5 },
+        startVelocity: 14,
+        colors: ['#FFE55C', '#FFA559', '#FF6E46', '#FFF2B5', '#FFD966'],
+        decay: 0.85,
+        gravity: 1.2
+      });
+      // little extra star-shaped confetti? (optional)
+      canvasConfetti({
+        particleCount: 40,
+        spread: 45,
+        origin: { y: 0.65, x: 0.5 },
+        startVelocity: 20,
+        shapes: ['star'],
+        colors: ['#FFD700', '#FFBF00', '#FFA500']
+      });
+    }, 420);
+    
+    // add a cute wiggle animation to the order button for extra "pop" feeling
+    const btn = document.getElementById('submitBtn');
+    btn.classList.add('popper-effect');
+    setTimeout(() => btn.classList.remove('popper-effect'), 600);
+  }
+
+  function showMessage(msg, isError = false) {
+    statusDiv.textContent = msg;
+    statusDiv.classList.remove('success-message', 'error-message');
+    statusDiv.classList.add(isError ? 'error-message' : 'success-message');
+  }
+
+  function validateForm() {
+    const requiredFields = ['name', 'product_name', 'country', 'state', 'city', 'address', 'street', 'postal_code'];
+    for (let field of requiredFields) {
+      const input = form.elements[field];
+      if (!input || !input.value.trim()) {
+        let fieldName = field.replace(/_/g, ' ');
+        showMessage(`❌ Missing required: ${fieldName}. Please fill all star (*) fields.`, true);
+        input?.focus();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    // collect all form data
+    const formDataObj = {};
+    for (let el of form.elements) {
+      if (el.name && el.name !== '') {
+        formDataObj[el.name] = el.value.trim();
+      }
+    }
+
+    // prepare email subject and template for FormSubmit
+    formDataObj['_subject'] = `🛍️ NEW AM STUDIO ORDER - ${formDataObj.name || 'Customer'}`;
+    formDataObj['_template'] = 'table';
+    formDataObj['_captcha'] = 'false';
+
+    const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(OWNER_EMAIL)}`;
+
+    submitBtn.disabled = true;
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = "🎉 SENDING YOUR ORDER... 🎉";
+    statusDiv.textContent = "✨ Processing your glamorous order... ✨";
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(formDataObj)
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success === true) {
+        // ✅ SUCCESS: show message + PARTY POPPERS BLOW OUT!!
+        showMessage(`✅ ORDER CONFIRMED! 🎉 Party poppers activated! A complete order email has been sent to ${OWNER_EMAIL}. Thank you for shopping with AM STUDIO!`, false);
+        form.reset();   // clear all fields
+        statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        // 🎉🎉🎉 LET THE PARTY POPPERS EXPLODE! 🎉🎉🎉
+        triggerPartyPopper();
+        
+        // extra joyful message flash
+        setTimeout(() => {
+          if (statusDiv) {
+            statusDiv.style.transition = "0.2s";
+            statusDiv.style.backgroundColor = "#2c2a1e";
+            setTimeout(() => statusDiv.style.backgroundColor = "", 800);
+          }
+        }, 100);
+      } else {
+        showMessage(`❌ Oops! Something went wrong: ${result.message || 'Please try again later.'}`, true);
+      }
+    } catch (error) {
+      console.error('Order error:', error);
+      showMessage(`❌ Network error — couldn't submit order. Check your internet and try again.`, true);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
+    }
+  }
+
+  form.addEventListener('submit', handleSubmit);
+</script>
+</body>
+</html>
