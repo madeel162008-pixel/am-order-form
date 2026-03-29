@@ -7,43 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Inter', sans-serif;
       background: radial-gradient(circle at 10% 20%, #0c0c0c, #000000);
       min-height: 100vh;
       padding: 2rem 1.5rem;
       color: #ffffff;
-      position: relative;
     }
-
-    /* decorative background */
-    body::before {
-      content: "✨";
-      font-size: 400px;
-      position: fixed;
-      bottom: -100px;
-      right: -100px;
-      opacity: 0.03;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::after {
-      content: "✦";
-      font-size: 280px;
-      position: fixed;
-      top: -80px;
-      left: -80px;
-      opacity: 0.03;
-      pointer-events: none;
-    }
-
     .form-container {
       max-width: 1200px;
       margin: 0 auto;
@@ -55,8 +26,7 @@
       position: relative;
       z-index: 2;
     }
-
-    /* YELLOW BANNER - rich decoration */
+    /* YELLOW BANNER */
     .studio-header {
       background: linear-gradient(125deg, #FFD966 0%, #FFC107 30%, #FFB347 70%, #FFD966 100%);
       padding: 2rem 1.5rem;
@@ -66,7 +36,6 @@
       overflow: hidden;
       box-shadow: inset 0 1px 4px rgba(255,255,200,0.8), 0 8px 20px rgba(0,0,0,0.2);
     }
-
     .studio-header::before {
       content: "";
       position: absolute;
@@ -78,13 +47,11 @@
       animation: slowGlide 12s infinite linear;
       pointer-events: none;
     }
-
     @keyframes slowGlide {
       0% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.4; }
       50% { transform: translate(5%, 5%) rotate(3deg); opacity: 0.7; }
       100% { transform: translate(0%, 0%) rotate(0deg); opacity: 0.4; }
     }
-
     .studio-name {
       font-size: 4.2rem;
       font-weight: 900;
@@ -98,21 +65,17 @@
       border-radius: 80px;
       backdrop-filter: blur(2px);
     }
-
     .slogan {
       font-size: 1.4rem;
       font-weight: 700;
       color: #2c2412;
       letter-spacing: 1px;
       margin-top: 0.5rem;
-      text-shadow: 0 1px 1px rgba(255,255,180,0.5);
       background: rgba(0,0,0,0.15);
       display: inline-block;
       padding: 0.3rem 1.8rem;
       border-radius: 60px;
-      backdrop-filter: blur(2px);
     }
-
     .delivery-note {
       margin-top: 1rem;
       background: #000000aa;
@@ -124,30 +87,20 @@
       font-weight: 700;
       color: #FFEA9E;
       border: 1px solid #FFD966;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-
-    .form-body {
-      padding: 2.5rem 2rem 2rem 2rem;
-    }
-
-    /* HORIZONTAL FORM: 2 columns */
+    .form-body { padding: 2.5rem 2rem 2rem 2rem; }
+    /* Horizontal form */
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.8rem 2rem;
     }
-
     .input-group {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
-
-    .input-group:last-child {
-      grid-column: span 2;
-    }
-
+    .input-group:last-child { grid-column: span 2; }
     label {
       font-weight: 700;
       font-size: 0.8rem;
@@ -158,7 +111,6 @@
       align-items: center;
       gap: 8px;
     }
-
     input, select, textarea {
       font-family: 'Inter', sans-serif;
       width: 100%;
@@ -172,19 +124,12 @@
       color: #f5f5f5;
       font-weight: 500;
     }
-
     input:focus, select:focus, textarea:focus {
       border-color: #FFD966;
       box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
       background: #18181f;
     }
-
-    .required-star {
-      color: #FF8A5C;
-      font-size: 1rem;
-      margin-left: 4px;
-    }
-
+    .required-star { color: #FF8A5C; font-size: 1rem; margin-left: 4px; }
     button {
       background: linear-gradient(105deg, #FFD966 0%, #FFC107 40%, #FFB347 100%);
       border: none;
@@ -204,49 +149,22 @@
       letter-spacing: 1px;
       box-shadow: 0 10px 25px -5px rgba(255, 200, 0, 0.5);
       text-transform: uppercase;
-      position: relative;
     }
-
-    button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 35px -8px rgba(255, 200, 0, 0.6);
-      filter: brightness(1.02);
-    }
-
-    button:active {
-      transform: translateY(2px);
-    }
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-
+    button:hover { transform: translateY(-3px); filter: brightness(1.02); }
+    button:active { transform: translateY(2px); }
     .message-area {
       margin-top: 1.8rem;
       padding: 1rem 1.2rem;
       border-radius: 40px;
       text-align: center;
       font-weight: 600;
-      transition: 0.2s;
       background: #12121a;
       color: #FFD966;
       font-size: 0.9rem;
       border: 1px solid #2a2a34;
     }
-
-    .success-message {
-      background: rgba(46, 204, 113, 0.12);
-      color: #baf56e;
-      border-left: 5px solid #f9ca24;
-    }
-
-    .error-message {
-      background: rgba(231, 76, 60, 0.1);
-      color: #ffaa66;
-      border-left: 5px solid #e67e22;
-    }
-
+    .success-message { background: rgba(46, 204, 113, 0.12); color: #baf56e; border-left: 5px solid #f9ca24; }
+    .error-message { background: rgba(231, 76, 60, 0.1); color: #ffaa66; border-left: 5px solid #e67e22; }
     footer {
       text-align: center;
       font-size: 0.75rem;
@@ -255,146 +173,93 @@
       border-top: 1px solid #FFD96633;
       color: #aaa;
     }
-
-    footer strong {
-      color: #FFD966;
-    }
-
+    footer strong { color: #FFD966; }
     @media (max-width: 760px) {
       body { padding: 1rem; }
       .form-grid { grid-template-columns: 1fr; gap: 1.2rem; }
       .input-group:last-child { grid-column: span 1; }
       .studio-name { font-size: 2.7rem; }
-      .slogan { font-size: 1rem; }
       .form-body { padding: 1.5rem; }
     }
-
+    .popper-effect { animation: wiggle 0.2s ease-in-out 3; }
     @keyframes wiggle {
       0%,100% { transform: rotate(0deg); }
       25% { transform: rotate(5deg); }
       75% { transform: rotate(-5deg); }
     }
-    .popper-effect {
-      animation: wiggle 0.2s ease-in-out 3;
+    .fallback-box {
+      margin-top: 1rem;
+      background: #1e1e2a;
+      border-radius: 24px;
+      padding: 1rem;
+      font-size: 0.8rem;
+      border: 1px solid #FFD966;
+      display: none;
+      text-align: left;
+    }
+    .fallback-box textarea {
+      background: #0a0a0f;
+      color: #FFD966;
+      font-family: monospace;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      border-radius: 16px;
+    }
+    .copy-btn {
+      background: #FFD966;
+      color: #000;
+      font-size: 0.7rem;
+      padding: 0.4rem 1rem;
+      margin-top: 0.5rem;
+      width: auto;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
-
 <div class="form-container">
   <div class="studio-header">
     <div class="studio-name">✦ AM STUDIO ✦</div>
     <div class="slogan">WHERE QUALITY MEETS YOUR LIFESTYLE</div>
     <div class="delivery-note">📦 Fast Delivery • 10 to 15 days worldwide</div>
   </div>
-
   <div class="form-body">
     <form id="orderForm">
       <div class="form-grid">
-        <div class="input-group">
-          <label>👤 Full Name <span class="required-star">*</span></label>
-          <input type="text" name="name" placeholder="e.g., Alex Rivera" required>
-        </div>
-        <div class="input-group">
-          <label>🏷️ Product Name <span class="required-star">*</span></label>
-          <input type="text" name="product_name" placeholder="Item / Model / SKU" required>
-        </div>
-        <div class="input-group">
-          <label>🌍 Country <span class="required-star">*</span></label>
-          <input type="text" name="country" placeholder="Country" required>
-        </div>
-        <div class="input-group">
-          <label>🗺️ State / Province <span class="required-star">*</span></label>
-          <input type="text" name="state" placeholder="State / Region" required>
-        </div>
-        <div class="input-group">
-          <label>🏙️ City <span class="required-star">*</span></label>
-          <input type="text" name="city" placeholder="City" required>
-        </div>
-        <div class="input-group">
-          <label>🏠 Address (House/Building) <span class="required-star">*</span></label>
-          <input type="text" name="address" placeholder="Building name, flat no." required>
-        </div>
-        <div class="input-group">
-          <label>🛣️ Street Name / No. <span class="required-star">*</span></label>
-          <input type="text" name="street" placeholder="Street / Avenue" required>
-        </div>
-        <div class="input-group">
-          <label>📮 Postal Code <span class="required-star">*</span></label>
-          <input type="text" name="postal_code" placeholder="Postal / Zip code" required>
-        </div>
-        <div class="input-group">
-          <label>📧 Email (order updates)</label>
-          <input type="email" name="customer_email" placeholder="your@email.com">
-          <small style="font-size: 0.7rem; color: #FFD966AA;">Optional but recommended</small>
-        </div>
+        <div class="input-group"><label>👤 Full Name <span class="required-star">*</span></label><input type="text" name="name" placeholder="Full name" required></div>
+        <div class="input-group"><label>🏷️ Product Name <span class="required-star">*</span></label><input type="text" name="product_name" placeholder="Product name" required></div>
+        <div class="input-group"><label>🌍 Country <span class="required-star">*</span></label><input type="text" name="country" placeholder="Country" required></div>
+        <div class="input-group"><label>🗺️ State / Province <span class="required-star">*</span></label><input type="text" name="state" placeholder="State" required></div>
+        <div class="input-group"><label>🏙️ City <span class="required-star">*</span></label><input type="text" name="city" placeholder="City" required></div>
+        <div class="input-group"><label>🏠 Address (House/Building) <span class="required-star">*</span></label><input type="text" name="address" placeholder="House/Building" required></div>
+        <div class="input-group"><label>🛣️ Street Name / No. <span class="required-star">*</span></label><input type="text" name="street" placeholder="Street" required></div>
+        <div class="input-group"><label>📮 Postal Code <span class="required-star">*</span></label><input type="text" name="postal_code" placeholder="Postal code" required></div>
+        <div class="input-group"><label>📧 Email (order updates)</label><input type="email" name="customer_email" placeholder="your@email.com"><small style="font-size:0.7rem;color:#FFD966AA;">Optional</small></div>
       </div>
-      
       <button type="submit" id="submitBtn">🎁 PLACE ORDER NOW 🎁</button>
-      <div id="formStatus" class="message-area">
-        💛 Fill your details — click order to open your email client (no activation needed).
+      <div id="formStatus" class="message-area">💛 Fill the form – then click order. Your email app will open with all details (no activation).</div>
+      <div id="fallbackBox" class="fallback-box">
+        <strong>📧 Email didn't open automatically?</strong> Copy the details below and send manually to <strong>madeel.162008@gmail.com</strong>
+        <textarea id="orderText" rows="6" readonly style="width:100%;"></textarea>
+        <button type="button" id="copyBtn" class="copy-btn">📋 Copy Order Details</button>
       </div>
     </form>
   </div>
-  <footer>
-    ⚡ <strong>How it works:</strong> After clicking order, your email app opens with all details pre-filled. Just press Send. No activation, no third-party service.
-  </footer>
+  <footer>⚡ <strong>No activation needed:</strong> Your email client will open with pre-filled order. Just press Send.</footer>
 </div>
-
 <script>
   const form = document.getElementById('orderForm');
   const submitBtn = document.getElementById('submitBtn');
   const statusDiv = document.getElementById('formStatus');
+  const fallbackBox = document.getElementById('fallbackBox');
+  const orderTextarea = document.getElementById('orderText');
+  const copyBtn = document.getElementById('copyBtn');
 
-  // 🎉 PARTY POPPER ANIMATION
   function triggerPartyPopper() {
-    canvasConfetti({
-      particleCount: 140,
-      spread: 75,
-      origin: { y: 0.6, x: 0.5 },
-      startVelocity: 18,
-      colors: ['#FFD966', '#FFC107', '#FFB347', '#F9E45B', '#FF8C42', '#FFFFFF', '#FF6B6B'],
-      decay: 0.9,
-      ticks: 180
-    });
-    setTimeout(() => {
-      canvasConfetti({
-        particleCount: 80,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0.1, y: 0.7 },
-        startVelocity: 22,
-        colors: ['#FFD966', '#FFAE42', '#FFE484']
-      });
-    }, 130);
-    setTimeout(() => {
-      canvasConfetti({
-        particleCount: 80,
-        angle: 120,
-        spread: 55,
-        origin: { x: 0.9, y: 0.7 },
-        startVelocity: 22,
-        colors: ['#FFD966', '#F4D03F', '#FFB347']
-      });
-    }, 260);
-    setTimeout(() => {
-      canvasConfetti({
-        particleCount: 200,
-        spread: 100,
-        origin: { y: 0.5, x: 0.5 },
-        startVelocity: 14,
-        colors: ['#FFE55C', '#FFA559', '#FF6E46', '#FFF2B5', '#FFD966'],
-        gravity: 1.2
-      });
-      canvasConfetti({
-        particleCount: 40,
-        spread: 45,
-        origin: { y: 0.65, x: 0.5 },
-        startVelocity: 20,
-        shapes: ['star'],
-        colors: ['#FFD700', '#FFBF00', '#FFA500']
-      });
-    }, 420);
+    canvasConfetti({ particleCount: 140, spread: 75, origin: { y: 0.6, x: 0.5 }, startVelocity: 18, colors: ['#FFD966','#FFC107','#FFB347','#F9E45B','#FF8C42','#FFFFFF'], decay: 0.9 });
+    setTimeout(() => { canvasConfetti({ particleCount: 80, angle: 60, spread: 55, origin: { x: 0.1, y: 0.7 }, startVelocity: 22, colors: ['#FFD966','#FFAE42'] }); }, 130);
+    setTimeout(() => { canvasConfetti({ particleCount: 80, angle: 120, spread: 55, origin: { x: 0.9, y: 0.7 }, startVelocity: 22 }); }, 260);
+    setTimeout(() => { canvasConfetti({ particleCount: 200, spread: 100, origin: { y: 0.5, x: 0.5 }, startVelocity: 14, colors: ['#FFE55C','#FFA559','#FF6E46'], gravity: 1.2 }); canvasConfetti({ particleCount: 40, spread: 45, origin: { y: 0.65, x: 0.5 }, startVelocity: 20, shapes: ['star'], colors: ['#FFD700'] }); }, 420);
     submitBtn.classList.add('popper-effect');
     setTimeout(() => submitBtn.classList.remove('popper-effect'), 600);
   }
@@ -405,13 +270,50 @@
     statusDiv.classList.add(isError ? 'error-message' : 'success-message');
   }
 
+  function buildOrderText(formData) {
+    return `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🛍️ NEW ORDER FROM AM STUDIO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 Name: ${formData.name}
+🏷️ Product: ${formData.product_name}
+🌍 Country: ${formData.country}
+🗺️ State: ${formData.state}
+🏙️ City: ${formData.city}
+🏠 Address: ${formData.address}
+🛣️ Street: ${formData.street}
+📮 Postal Code: ${formData.postal_code}
+📧 Customer Email: ${formData.customer_email || 'Not provided'}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 Delivery: 10-15 days
+✅ Please process this order.
+`;
+  }
+
+  function openEmailClient(formData) {
+    const owner = "madeel.162008@gmail.com";
+    const subject = `🛍️ NEW ORDER from ${formData.name} - AM STUDIO`;
+    const body = buildOrderText(formData);
+    const mailtoLink = `mailto:${owner}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+  }
+
+  function showFallback(formData) {
+    const text = buildOrderText(formData);
+    orderTextarea.value = text;
+    fallbackBox.style.display = 'block';
+    copyBtn.onclick = () => {
+      orderTextarea.select();
+      document.execCommand('copy');
+      showMessage("✅ Order details copied! You can now paste into an email to madeel.162008@gmail.com", false);
+    };
+  }
+
   function validateForm() {
-    const required = ['name', 'product_name', 'country', 'state', 'city', 'address', 'street', 'postal_code'];
-    for (let field of required) {
-      const input = form.elements[field];
+    const required = ['name','product_name','country','state','city','address','street','postal_code'];
+    for (let f of required) {
+      const input = form.elements[f];
       if (!input || !input.value.trim()) {
-        let label = field.replace(/_/g, ' ');
-        showMessage(`❌ ${label} is required. Please fill all star (*) fields.`, true);
+        showMessage(`❌ ${f.replace(/_/g,' ')} is required.`, true);
         input?.focus();
         return false;
       }
@@ -419,50 +321,28 @@
     return true;
   }
 
-  // Build email body and open default email client
-  function openEmailClient(formData) {
-    const ownerEmail = "madeel.162008@gmail.com";
-    const subject = `🛍️ NEW ORDER from ${formData.name || 'Customer'} - AM STUDIO`;
-    
-    let body = `Hello AM STUDIO,\n\nA new order has been placed:\n\n`;
-    body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-    body += `👤 FULL NAME: ${formData.name}\n`;
-    body += `🏷️ PRODUCT: ${formData.product_name}\n`;
-    body += `🌍 COUNTRY: ${formData.country}\n`;
-    body += `🗺️ STATE: ${formData.state}\n`;
-    body += `🏙️ CITY: ${formData.city}\n`;
-    body += `🏠 ADDRESS (House/Building): ${formData.address}\n`;
-    body += `🛣️ STREET: ${formData.street}\n`;
-    body += `📮 POSTAL CODE: ${formData.postal_code}\n`;
-    if (formData.customer_email) body += `📧 CUSTOMER EMAIL: ${formData.customer_email}\n`;
-    body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-    body += `\n📦 Delivery timeline: 10-15 days\n✅ Please process this order.\n\nThank you!`;
-    
-    const mailtoLink = `mailto:${ownerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
     if (!validateForm()) return;
 
-    // collect all data
     const formData = {};
     for (let el of form.elements) {
-      if (el.name && el.name !== '') {
-        formData[el.name] = el.value.trim();
-      }
+      if (el.name && el.name !== '') formData[el.name] = el.value.trim();
     }
 
-    // trigger party poppers animation
     triggerPartyPopper();
 
-    // open email client with prefilled details
-    openEmailClient(formData);
-
-    // show success message and reset form
-    showMessage(`✅ Order prepared! Your email client has opened. Just press Send to complete the order. No activation needed. 🎉`, false);
-    form.reset();
+    // Try to open email client
+    try {
+      openEmailClient(formData);
+      showMessage(`✅ Order ready! Your email app should open. If not, check the fallback box below. 🎉`, false);
+      form.reset();
+      // hide fallback initially
+      fallbackBox.style.display = 'none';
+    } catch(err) {
+      showFallback(formData);
+      showMessage(`⚠️ Could not open email automatically. Copy the order details below and send manually.`, true);
+    }
     statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
