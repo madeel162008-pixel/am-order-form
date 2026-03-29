@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>AM STUDIO | Glam Order Form</title>
+  <title>AM STUDIO | Order Form – No Activation</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- canvas-confetti for party popper animation -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
   <style>
     * {
@@ -23,7 +22,7 @@
       position: relative;
     }
 
-    /* decorative background sparkle overlay */
+    /* decorative background */
     body::before {
       content: "✨";
       font-size: 400px;
@@ -33,8 +32,6 @@
       opacity: 0.03;
       pointer-events: none;
       z-index: 0;
-      font-family: monospace;
-      transform: rotate(15deg);
     }
 
     body::after {
@@ -45,7 +42,6 @@
       left: -80px;
       opacity: 0.03;
       pointer-events: none;
-      z-index: 0;
     }
 
     .form-container {
@@ -56,12 +52,11 @@
       border-radius: 3rem;
       box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 215, 0, 0.25);
       overflow: hidden;
-      transition: all 0.2s ease;
       position: relative;
       z-index: 2;
     }
 
-    /* YELLOW BANNER - super visible, rich decoration */
+    /* YELLOW BANNER - rich decoration */
     .studio-header {
       background: linear-gradient(125deg, #FFD966 0%, #FFC107 30%, #FFB347 70%, #FFD966 100%);
       padding: 2rem 1.5rem;
@@ -72,7 +67,6 @@
       box-shadow: inset 0 1px 4px rgba(255,255,200,0.8), 0 8px 20px rgba(0,0,0,0.2);
     }
 
-    /* glitter shine effect */
     .studio-header::before {
       content: "";
       position: absolute;
@@ -98,7 +92,6 @@
       color: #1e2a1f;
       text-shadow: 4px 4px 12px rgba(0,0,0,0.2), 0 1px 0 #fff9c4;
       margin-bottom: 0.25rem;
-      position: relative;
       display: inline-block;
       background: #0000001a;
       padding: 0 1rem;
@@ -134,12 +127,11 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
-    /* form body */
     .form-body {
       padding: 2.5rem 2rem 2rem 2rem;
     }
 
-    /* HORIZONTAL FORM: 2 columns grid (nice wide layout) */
+    /* HORIZONTAL FORM: 2 columns */
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -152,7 +144,6 @@
       gap: 0.5rem;
     }
 
-    /* email field spans full width on desktop and looks neat */
     .input-group:last-child {
       grid-column: span 2;
     }
@@ -214,20 +205,6 @@
       box-shadow: 0 10px 25px -5px rgba(255, 200, 0, 0.5);
       text-transform: uppercase;
       position: relative;
-      overflow: hidden;
-    }
-
-    button::after {
-      content: "🎉";
-      position: absolute;
-      right: 20px;
-      opacity: 0.6;
-      transition: 0.2s;
-    }
-
-    button:hover::after {
-      transform: scale(1.2);
-      opacity: 1;
     }
 
     button:hover {
@@ -241,9 +218,8 @@
     }
 
     button:disabled {
-      opacity: 0.7;
-      transform: none;
-      filter: grayscale(0.1);
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     .message-area {
@@ -263,7 +239,6 @@
       background: rgba(46, 204, 113, 0.12);
       color: #baf56e;
       border-left: 5px solid #f9ca24;
-      border: 1px solid rgba(255, 200, 100, 0.4);
     }
 
     .error-message {
@@ -279,51 +254,21 @@
       background: #050508cc;
       border-top: 1px solid #FFD96633;
       color: #aaa;
-      backdrop-filter: blur(4px);
     }
 
     footer strong {
       color: #FFD966;
-      font-weight: 700;
-    }
-
-    /* extra decoration: corner flourish */
-    .form-container::after {
-      content: "✨";
-      position: absolute;
-      bottom: 20px;
-      right: 25px;
-      font-size: 28px;
-      opacity: 0.4;
-      pointer-events: none;
     }
 
     @media (max-width: 760px) {
-      body {
-        padding: 1rem;
-      }
-      .form-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
-      }
-      .input-group:last-child {
-        grid-column: span 1;
-      }
-      .studio-name {
-        font-size: 2.7rem;
-      }
-      .slogan {
-        font-size: 1rem;
-      }
-      .form-body {
-        padding: 1.5rem;
-      }
-      button::after {
-        display: none;
-      }
+      body { padding: 1rem; }
+      .form-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .input-group:last-child { grid-column: span 1; }
+      .studio-name { font-size: 2.7rem; }
+      .slogan { font-size: 1rem; }
+      .form-body { padding: 1.5rem; }
     }
 
-    /* sparkle animation for party popper text (optional) */
     @keyframes wiggle {
       0%,100% { transform: rotate(0deg); }
       25% { transform: rotate(5deg); }
@@ -344,7 +289,7 @@
   </div>
 
   <div class="form-body">
-    <form id="orderForm" method="POST">
+    <form id="orderForm">
       <div class="form-grid">
         <div class="input-group">
           <label>👤 Full Name <span class="required-star">*</span></label>
@@ -381,31 +326,28 @@
         <div class="input-group">
           <label>📧 Email (order updates)</label>
           <input type="email" name="customer_email" placeholder="your@email.com">
-          <small style="font-size: 0.7rem; color: #FFD966AA;">Optional but recommended for tracking</small>
+          <small style="font-size: 0.7rem; color: #FFD966AA;">Optional but recommended</small>
         </div>
       </div>
       
       <button type="submit" id="submitBtn">🎁 PLACE ORDER NOW 🎁</button>
       <div id="formStatus" class="message-area">
-        💛 Fill in your details — full order summary will be sent to shop owner instantly.
+        💛 Fill your details — click order to open your email client (no activation needed).
       </div>
     </form>
   </div>
   <footer>
-    ⚡ <strong>How it works:</strong> After you order, a complete email with all details goes directly to <strong>madeel.162008@gmail.com</strong> — secure & private.
+    ⚡ <strong>How it works:</strong> After clicking order, your email app opens with all details pre-filled. Just press Send. No activation, no third-party service.
   </footer>
 </div>
 
 <script>
-  const OWNER_EMAIL = "madeel.162008@gmail.com";
   const form = document.getElementById('orderForm');
   const submitBtn = document.getElementById('submitBtn');
   const statusDiv = document.getElementById('formStatus');
 
-  // 🎉 PARTY POPPER ANIMATION - blow out effect on successful order
+  // 🎉 PARTY POPPER ANIMATION
   function triggerPartyPopper() {
-    // multi-burst confetti to simulate real party poppers
-    // first burst from the center
     canvasConfetti({
       particleCount: 140,
       spread: 75,
@@ -415,8 +357,6 @@
       decay: 0.9,
       ticks: 180
     });
-    
-    // second blast from left side
     setTimeout(() => {
       canvasConfetti({
         particleCount: 80,
@@ -424,11 +364,9 @@
         spread: 55,
         origin: { x: 0.1, y: 0.7 },
         startVelocity: 22,
-        colors: ['#FFD966', '#FFAE42', '#FFE484', '#f39c12', '#e67e22']
+        colors: ['#FFD966', '#FFAE42', '#FFE484']
       });
     }, 130);
-    
-    // third blast from right side
     setTimeout(() => {
       canvasConfetti({
         particleCount: 80,
@@ -436,11 +374,9 @@
         spread: 55,
         origin: { x: 0.9, y: 0.7 },
         startVelocity: 22,
-        colors: ['#FFD966', '#F4D03F', '#FFB347', '#f1c40f', '#e67e22']
+        colors: ['#FFD966', '#F4D03F', '#FFB347']
       });
     }, 260);
-    
-    // additional high energy pop (like party popper finale)
     setTimeout(() => {
       canvasConfetti({
         particleCount: 200,
@@ -448,10 +384,8 @@
         origin: { y: 0.5, x: 0.5 },
         startVelocity: 14,
         colors: ['#FFE55C', '#FFA559', '#FF6E46', '#FFF2B5', '#FFD966'],
-        decay: 0.85,
         gravity: 1.2
       });
-      // little extra star-shaped confetti? (optional)
       canvasConfetti({
         particleCount: 40,
         spread: 45,
@@ -461,11 +395,8 @@
         colors: ['#FFD700', '#FFBF00', '#FFA500']
       });
     }, 420);
-    
-    // add a cute wiggle animation to the order button for extra "pop" feeling
-    const btn = document.getElementById('submitBtn');
-    btn.classList.add('popper-effect');
-    setTimeout(() => btn.classList.remove('popper-effect'), 600);
+    submitBtn.classList.add('popper-effect');
+    setTimeout(() => submitBtn.classList.remove('popper-effect'), 600);
   }
 
   function showMessage(msg, isError = false) {
@@ -475,12 +406,12 @@
   }
 
   function validateForm() {
-    const requiredFields = ['name', 'product_name', 'country', 'state', 'city', 'address', 'street', 'postal_code'];
-    for (let field of requiredFields) {
+    const required = ['name', 'product_name', 'country', 'state', 'city', 'address', 'street', 'postal_code'];
+    for (let field of required) {
       const input = form.elements[field];
       if (!input || !input.value.trim()) {
-        let fieldName = field.replace(/_/g, ' ');
-        showMessage(`❌ Missing required: ${fieldName}. Please fill all star (*) fields.`, true);
+        let label = field.replace(/_/g, ' ');
+        showMessage(`❌ ${label} is required. Please fill all star (*) fields.`, true);
         input?.focus();
         return false;
       }
@@ -488,66 +419,51 @@
     return true;
   }
 
-  async function handleSubmit(e) {
+  // Build email body and open default email client
+  function openEmailClient(formData) {
+    const ownerEmail = "madeel.162008@gmail.com";
+    const subject = `🛍️ NEW ORDER from ${formData.name || 'Customer'} - AM STUDIO`;
+    
+    let body = `Hello AM STUDIO,\n\nA new order has been placed:\n\n`;
+    body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+    body += `👤 FULL NAME: ${formData.name}\n`;
+    body += `🏷️ PRODUCT: ${formData.product_name}\n`;
+    body += `🌍 COUNTRY: ${formData.country}\n`;
+    body += `🗺️ STATE: ${formData.state}\n`;
+    body += `🏙️ CITY: ${formData.city}\n`;
+    body += `🏠 ADDRESS (House/Building): ${formData.address}\n`;
+    body += `🛣️ STREET: ${formData.street}\n`;
+    body += `📮 POSTAL CODE: ${formData.postal_code}\n`;
+    if (formData.customer_email) body += `📧 CUSTOMER EMAIL: ${formData.customer_email}\n`;
+    body += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+    body += `\n📦 Delivery timeline: 10-15 days\n✅ Please process this order.\n\nThank you!`;
+    
+    const mailtoLink = `mailto:${ownerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
     if (!validateForm()) return;
 
-    // collect all form data
-    const formDataObj = {};
+    // collect all data
+    const formData = {};
     for (let el of form.elements) {
       if (el.name && el.name !== '') {
-        formDataObj[el.name] = el.value.trim();
+        formData[el.name] = el.value.trim();
       }
     }
 
-    // prepare email subject and template for FormSubmit
-    formDataObj['_subject'] = `🛍️ NEW AM STUDIO ORDER - ${formDataObj.name || 'Customer'}`;
-    formDataObj['_template'] = 'table';
-    formDataObj['_captcha'] = 'false';
+    // trigger party poppers animation
+    triggerPartyPopper();
 
-    const endpoint = `https://formsubmit.co/ajax/${encodeURIComponent(OWNER_EMAIL)}`;
+    // open email client with prefilled details
+    openEmailClient(formData);
 
-    submitBtn.disabled = true;
-    const originalBtnText = submitBtn.innerHTML;
-    submitBtn.innerHTML = "🎉 SENDING YOUR ORDER... 🎉";
-    statusDiv.textContent = "✨ Processing your glamorous order... ✨";
-
-    try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(formDataObj)
-      });
-
-      const result = await response.json();
-
-      if (response.ok && result.success === true) {
-        // ✅ SUCCESS: show message + PARTY POPPERS BLOW OUT!!
-        showMessage(`✅ ORDER CONFIRMED! 🎉 Party poppers activated! A complete order email has been sent to ${OWNER_EMAIL}. Thank you for shopping with AM STUDIO!`, false);
-        form.reset();   // clear all fields
-        statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        
-        // 🎉🎉🎉 LET THE PARTY POPPERS EXPLODE! 🎉🎉🎉
-        triggerPartyPopper();
-        
-        // extra joyful message flash
-        setTimeout(() => {
-          if (statusDiv) {
-            statusDiv.style.transition = "0.2s";
-            statusDiv.style.backgroundColor = "#2c2a1e";
-            setTimeout(() => statusDiv.style.backgroundColor = "", 800);
-          }
-        }, 100);
-      } else {
-        showMessage(`❌ Oops! Something went wrong: ${result.message || 'Please try again later.'}`, true);
-      }
-    } catch (error) {
-      console.error('Order error:', error);
-      showMessage(`❌ Network error — couldn't submit order. Check your internet and try again.`, true);
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalBtnText;
-    }
+    // show success message and reset form
+    showMessage(`✅ Order prepared! Your email client has opened. Just press Send to complete the order. No activation needed. 🎉`, false);
+    form.reset();
+    statusDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   form.addEventListener('submit', handleSubmit);
